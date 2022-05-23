@@ -136,7 +136,7 @@ public class AIPlayer {
                     board.setVacant(location[0] + j, location[1] + i);
                 }
             }
-        } 
+        }
     }
     /**
      * Begin a game of 'Find My Things'. There are some steps to do here. They are:
@@ -158,7 +158,7 @@ public class AIPlayer {
             int[] location = selectLocation();
             int orientation = selectOrientation();
             if (tryItemLocation(itemList[i], location, orientation) == true) {
-                itemList[1].setLocation(location[0], location[1]);
+                itemList[i].setLocation(location[0], location[1]);
                 setLostPieces(itemList[i], location);
             }
             else {i = i-1;}

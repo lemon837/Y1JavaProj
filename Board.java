@@ -260,6 +260,7 @@ public class Board {
      */
     public int[] getClosestItem(int touchedX, int touchedY) {
         int[] minimalDist = {board.length, board[0].length};
+        
         for (int i = 0; i < board.length; i++){
             for (int j = 0; j < board[0].length; j++){
                 boolean isCloser = Math.abs(j - touchedY) + Math.abs(i - touchedX) < minimalDist[0] + minimalDist[1];
@@ -269,6 +270,7 @@ public class Board {
                 }
             }
         }
+        
         return minimalDist;
     }
     
@@ -281,13 +283,15 @@ public class Board {
      */
     public boolean checkForFoundItem(Item item) {
         int[][] shape = item.getShape();
+        
         for (int i = item.getLocationY(); i < shape.length + item.getLocationY(); i++) {
             for (int j = item.getLocationX(); j < shape.length + item.getLocationX(); j++) {
-                if (shape[i][j] == 1 && board[i-item.getLocationY()][j-item.getLocationX()] != Piece.FOUNDITEM) {
+                if (shape[i-item.getLocationY()][j-item.getLocationX()] == 1 && board[i-item.getLocationY()][j-item.getLocationX()] != Piece.FOUNDITEM) {
                     return false;
                     }
                 }
             }
+        
         item.setFound();
         return true;
     }
@@ -298,9 +302,9 @@ public class Board {
      */
     public ArrayList<Item> getFoundItemsList(Item[] items) {
         ArrayList<Item> FoundItemsList = new ArrayList<Item>();
-        for (Item item : items) {
+         for (Item item : items) {
             checkForFoundItem(item);
-            if (item.getIsFound()) {
+                if (item.getIsFound()) {
                 FoundItemsList.add(item);
             }
         }
